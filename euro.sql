@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 03, 2024 at 01:09 PM
+-- Generation Time: Cze 03, 2024 at 01:11 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -87,15 +87,6 @@ CREATE TABLE `osoby` (
   `haslo` varchar(45) NOT NULL,
   `typ` int(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `osoby`
---
-
-INSERT INTO `osoby` (`id_osoby`, `login`, `haslo`, `typ`) VALUES
-(1, 'sa', 'tajne', 1),
-(2, 'admin', 'tajne', 1),
-(3, 'user', 'tajne', 2);
 
 -- --------------------------------------------------------
 
@@ -204,7 +195,7 @@ ALTER TABLE `mecze`
 -- AUTO_INCREMENT for table `osoby`
 --
 ALTER TABLE `osoby`
-  MODIFY `id_osoby` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_osoby` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `typy_osoby`
