@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+main, form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+header, button{
+    margin: 0 10px;
+}
+
+ button{
+    padding: 10px 15px;
+    margin-top: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover{
+    background-color: #cecbcb;
+}
+
+h1{
+    margin: 20px;
+}
+
+table{
+    border: 1px solid black;
+}
+
+table, td, th{
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 5px 20px;
+    text-align: center;
+    border: 1px solid black;
+}
