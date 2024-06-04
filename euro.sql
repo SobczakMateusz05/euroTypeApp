@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 03, 2024 at 01:11 PM
+-- Generation Time: Cze 04, 2024 at 08:48 AM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `druzyny` (
   `id` int(11) NOT NULL,
-  `kraj` varchar(45) NOT NULL
+  `kraj` varchar(45) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -83,8 +83,8 @@ CREATE TABLE `mecze` (
 
 CREATE TABLE `osoby` (
   `id_osoby` int(11) NOT NULL,
-  `login` varchar(45) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
-  `haslo` varchar(45) NOT NULL,
+  `login` varchar(75) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+  `haslo` varchar(128) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `typ` int(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
