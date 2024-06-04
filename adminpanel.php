@@ -10,8 +10,17 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Mateusz Sobczak" />
+    <meta property="og:type" content="aplication" />
+    <meta property="og:description" content="Aplikacja do obstawiania meczy w zamkniętej grupie" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="mask-icon" href="img/favicon.svg" color="#000000">
+    <link rel="manifest" href="img/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/url.js"></script>
     <script src="js/admin.js"></script>  
