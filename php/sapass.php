@@ -2,7 +2,7 @@
 
 if(isset($_POST["pass"])){
     require_once("connect.php");
-    $pass=$_POST["pass"];
+    $pass=htmlspecialchars($_POST["pass"]);
     
     $sql = "INSERT INTO osoby VALUES(1, 'sa' , '$pass',1)";
     $result = $conn -> query($sql);

@@ -3,8 +3,8 @@
 if(isset($_POST["user"])&&$_POST["user"]!=0&&isset($_POST["pass"])&&$_POST["pass"]!=""){
     require_once("../connect.php");
 
-    $user = $_POST["user"];
-    $pass= $_POST["pass"];
+    $user = htmlspecialchars($_POST["user"]);
+    $pass= htmlspecialchars($_POST["pass"]);
 
     $sql = "SELECT haslo from osoby where id_osoby=$user";
     $result = $conn -> query($sql);

@@ -2,7 +2,7 @@
 
 if(isset($_POST["user"])&&$_POST["user"]!=0){
     require_once("../connect.php");
-    $user = $_POST["user"];
+    $user = htmlspecialchars($_POST["user"]);
 
     $sql = "DELETE FROM osoby WHERE id_osoby = $user";
     $reult = $conn -> query($sql);

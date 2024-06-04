@@ -2,9 +2,9 @@
 if(isset($_POST["name"])&&isset($_POST["pass"])&&isset($_POST["type"])){
     require_once("../connect.php");
 
-    $name = $_POST["name"];
-    $pass = $_POST["pass"];
-    $type= $_POST["type"];
+    $name = htmlspecialchars($_POST["name"]);
+    $pass = htmlspecialchars($_POST["pass"]);
+    $type= htmlspecialchars($_POST["type"]);
     
     $sql = "SELECT login from osoby WHERE login='$name'";
     $result = $conn -> query($sql);

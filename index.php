@@ -1,5 +1,4 @@
 <?php
-    require_once("php/connect.php");
     session_start();
 ?>
 <!DOCTYPE html>
@@ -22,6 +21,7 @@
 <body>
     <main>
     <?php
+        require_once("php/connect.php");
         $sql = "SELECT * from osoby where id_osoby=1";
         $result = $conn -> query($sql);
         $num_row = mysqli_num_rows($result);

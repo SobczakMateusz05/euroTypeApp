@@ -37,6 +37,11 @@
     <main>
     <h1>Euro 2024 Obstawianie</h1>
     <h2>Witaj <?php echo ucfirst($_SESSION["user"]) ?></h2>
+    <?php
+        if(isset($_GET["false"])&&$_GET["false"]==1){
+            echo '<h3 style="color:red;">Wystąpił błąd przy obstawianiu spróbuj ponownie</h3>';
+        }
+    ?>
     <form  action="php/type.php" method="POST">
             <?php
             $user_id = $_SESSION['id'] ;

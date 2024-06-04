@@ -2,8 +2,8 @@
 
 if(isset($_POST["user"])&&$_POST["user"]!=0&&isset($_POST["type"])){
     require_once("../connect.php");
-    $user = $_POST["user"];
-    $type = $_POST["type"];
+    $user = htmlspecialchars($_POST["user"]);
+    $type = htmlspecialchars($_POST["type"]);
 
     $sql = "UPDATE osoby set typ = $type where id_osoby = $user";
     $result = $conn ->query($sql);

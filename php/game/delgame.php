@@ -3,7 +3,7 @@
 if(isset($_POST["game"])&&$_POST["game"]!=0){
     require_once("../connect.php");
 
-    $game = $_POST["game"];
+    $game = htmlspecialchars($_POST["game"]);
     $sql = "DELETE FROM mecze WHERE id_meczu = $game";
     $sql2 = "DELETE FROM wyniki WHERE id_meczu = $game";
     $sql3 = "DELETE FROM typy WHERE id_meczu = $game";

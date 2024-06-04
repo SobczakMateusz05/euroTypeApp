@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION["user"])){
+        header("location:index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -20,6 +23,9 @@
     <script src="js/url.js"></script>
 </head>
 <body>
+    <?php
+        require_once("php/connect.php");
+    ?>
     <header>
         <button onclick="hyper('typing.php')">Ekran typowania</button>
         <button onclick="hyper('typescore.php')">Wyniki typowania</button>
@@ -38,8 +44,6 @@
                 <th>Wynik</th>
             </tr>
             <?php
-                require_once("php/connect.php");
-
                 $sql = "SELECT d.kraj as kraj1, t.kraj as kraj2, m.data, w.wynik FROM wyniki as w join mecze as m on w.id_meczu = m.id_meczu JOIN druzyny as d ON d.id=m.id_druzyna_1 JOIN druzyny as t on t.id=m.id_druzyna_2 ORDER BY m.data";
                 $result = $conn -> query($sql);
                 while($row=$result->fetch_assoc()){

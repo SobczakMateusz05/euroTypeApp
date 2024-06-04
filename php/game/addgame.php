@@ -3,9 +3,9 @@
 if(isset($_POST["team1"])&&isset($_POST["team2"])&&isset($_POST["date"])&&$_POST["team1"]!=0&&$_POST["team2"]!=0){
     require_once("../connect.php");
 
-    $team1 = $_POST["team1"];
-    $team2 = $_POST["team2"];
-    $date = $_POST["date"];
+    $team1 = htmlspecialchars($_POST["team1"]);
+    $team2 = htmlspecialchars($_POST["team2"]);
+    $date = htmlspecialchars($_POST["date"]);
     
     if($team1!=$team2){
         if($date>date("Y-m-d")){

@@ -1,6 +1,5 @@
 <?php
     session_start();
-    require_once("php/connect.php");
     if($_SESSION["type"]!="admin"){
         header("location:index.php");
     }
@@ -26,6 +25,9 @@
     <script src="js/admin.js"></script>  
 </head>
 <body>
+    <?php
+        require_once("php/connect.php");
+    ?>
     <header>
         <button onclick="hyper('typing.php')">Ekran typowania</button>
         <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
