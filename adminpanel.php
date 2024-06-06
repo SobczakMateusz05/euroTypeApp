@@ -32,11 +32,21 @@
         <button onclick="hyper('typing.php')">Ekran typowania</button>
         <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
         <button onclick="hyper('typescore.php')">Wyniki typowania</button>
+        <?php
+            if($_SESSION["id"]!=1){
+                echo '<button onclick="hyper('."'mytype.php'".')">Moje typy</button>';
+                echo '<button onclick="hyper('."'password.php'".')">Zmień hasło</button>';
+            }
+            else{
+                echo '<button onclick="hyper('."'usertype.php'".')">Typy użytkowników</button>';
+            }
+        ?>
         <button onclick="hyper('php/logout.php')">Wyloguj się</button>
     </header>
     <main>
+        <section class="main">
         <h1>Admin Panel</h1>
-        <h2>Witaj <?php echo ucfirst($_SESSION["user"]) ?></h2>
+        <h2>Witaj <?php echo $_SESSION["user"] ?></h2>
         <nav>
             <button onclick="manage('score')" class="manageBtn active" id="scoreBtn">Zarządzaj wynikami</button>
             <button onclick="manage('game')" class="manageBtn" id="gameBtn">Zarządzaj meczami</button>
@@ -306,7 +316,7 @@
                         $result = $conn -> query($sql);
                         while($row=$result->fetch_assoc()){
                             if($row["id_osoby"]!=0){
-                                echo '<option value="' . $row["id_osoby"] . '">'. $row["login"] . ' (' . ucfirst($row["typ"]) . ')</option>';
+                                echo '<option value="' . $row["id_osoby"] . '">'. $row["login"] . ' (' . $row["typ"] . ')</option>';
                             }
                         }
                     ?>
@@ -342,7 +352,7 @@
                                 $result = $conn -> query($sql);
                                 while($row=$result->fetch_assoc()){
                                     if($row["id_osoby"]!=0){
-                                        echo '<option value="' . $row["id_osoby"] . '">'. $row["login"] . ' (' . ucfirst($row["typ"]) . ')</option>';
+                                        echo '<option value="' . $row["id_osoby"] . '">'. $row["login"] . ' (' . $row["typ"] . ')</option>';
                                     }
                                 }
                             
@@ -390,7 +400,7 @@
                         $result = $conn -> query($sql);
                         while($row=$result->fetch_assoc()){
                             if($row["id_osoby"]!=1){
-                                echo '<option value="' . $row["id_osoby"] . '">'. $row["login"] . ' (' . ucfirst($row["typ"]) . ')</option>';
+                                echo '<option value="' . $row["id_osoby"] . '">'. $row["login"] . ' (' . $row["typ"] . ')</option>';
                             }
                         }
                     ?>
@@ -399,6 +409,7 @@
             </form>
 
         </section> 
+    </section>
     </main>  
 </body>
 </html>

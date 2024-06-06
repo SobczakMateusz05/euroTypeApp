@@ -5,7 +5,7 @@ if(isset($_POST["name"])&&isset($_POST["pass"])&&isset($_POST["type"])){
     $name = htmlspecialchars($_POST["name"]);
     $pass = htmlspecialchars($_POST["pass"]);
     $type= htmlspecialchars($_POST["type"]);
-    
+    $pass=password_hash("$pass", PASSWORD_DEFAULT);
     $sql = "SELECT login from osoby WHERE login='$name'";
     $result = $conn -> query($sql);
     $num_row = mysqli_num_rows($result);

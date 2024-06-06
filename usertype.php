@@ -12,7 +12,7 @@
     <meta property="og:type" content="aplication" />
     <meta property="og:description" content="Aplikacja do obstawiania meczy w zamkniętej grupie" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Euro2024 Wyniki Typów</title>
+    <title>Euro2024 Moje Typy</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
@@ -29,15 +29,7 @@
     <header>
         <button onclick="hyper('typing.php')">Ekran typowania</button>
         <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
-        <?php
-            if($_SESSION["id"]!=1){
-                echo '<button onclick="hyper('."'mytype.php'".')">Moje typy</button>';
-                echo '<button onclick="hyper('."'password.php'".')">Zmień hasło</button>';
-            }
-            else{
-                echo '<button onclick="hyper('."'usertype.php'".')">Typy użytkowników</button>';
-            }
-        ?>
+        <button onclick="hyper('typescore.php')">Wyniki typowania</button>
         <?php
             if($_SESSION["type"]=="admin")    
             echo '<button onclick="hyper('."'adminpanel.php'".')">Panel Admina</button>';
@@ -46,23 +38,23 @@
     </header>
     <main>
     <section class="main">
-        <h1>Wyniki typowania</h1>
-        <table>
-            <tr>
-                <th>Osoba</th>
-                <th>Trafione</th>
-                <th>Oddane głosy</th>
-            </tr>
-            <?php
-                $sql = "SELECT o.login, count(t.id_osoby) as liczba_typow, (SELECT Count(*) FROM wyniki as w join typy as t on t.id_meczu=w.id_meczu WHERE t.typ = w.wynik AND t.id_osoby=o.id_osoby)  as liczba_trafiona from osoby as o left join typy as t on o.id_osoby=t.id_osoby WHERE o.id_osoby !=1  GROUP BY o.login order by liczba_trafiona DESC";
+        <?php
+            $sql2= "SELECT o.id_osoby, o.login FROM osoby as o WHERE id_osoby!=1";
+            $result2 = $conn -> query($sql2);
+            while($row2=$result2->fetch_assoc()){
+                $id=$row2["id_osoby"];
+                echo "<h1>Typy ". $row2["login"] . "</h1> <table> <tr> <th> Mecz </th> <th> Głos </th><th>Trafiony</th></tr>";
+                $sql = "SELECT m.data, d.kraj as kraj1, dd.kraj as kraj2, if(t.typ=0, 'Remis', if(t.typ=1, d.kraj, if(t.typ=2, dd.kraj, 'zepsute')))t.typ, if(w.wynik is not NULL, if(w.wynik=t.typ, 'Tak', 'Nie'), '') as trafienie FROM mecze as m join druzyny as d on d.id=m.id_druzyna_1 join druzyny as dd on dd.id=m.id_druzyna_2 join typy as t on t.id_meczu=m.id_meczu left join wyniki as w on w.id_meczu=m.id_meczu WHERE t.id_osoby=$id ORDER BY data";
                 $result = $conn -> query($sql);
                 while($row=$result->fetch_assoc()){
-                   echo "<tr> <td>" . $row["login"] . "</td>";
-                   echo "<td>". $row["liczba_trafiona"]. "</td>";
-                   echo "<td>". $row["liczba_typow"] . "</td></tr>";
+                   echo "<tr> <td>" . $row["kraj1"]. "-". $row["kraj2"] . " (" . $row["data"]. ")" . "</td>";
+                   echo "<td>". $row["typ"]. "</td>";
+                   echo '<td>'. $row["trafienie"] . "</td></tr>";
                 }
-            ?>
-        </table>
+                echo "</table>";
+            }
+        
+        ?>
     </section>
     </main>
 </body>

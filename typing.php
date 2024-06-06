@@ -3,7 +3,6 @@
     if(!isset($_SESSION["user"])){
         header("location:index.php");
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +28,24 @@
         <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
         <button onclick="hyper('typescore.php')">Wyniki typowania</button>
         <?php
+            if($_SESSION["id"]!=1){
+                echo '<button onclick="hyper('."'mytype.php'".')">Moje typy</button>';
+                echo '<button onclick="hyper('."'password.php'".')">Zmień hasło</button>';
+            }
+            else{
+                echo '<button onclick="hyper('."'usertype.php'".')">Typy użytkowników</button>';
+            }
+        ?>
+        <?php
             if($_SESSION["type"]=="admin")    
             echo '<button onclick="hyper('."'adminpanel.php'".')">Panel Admina</button>';
         ?>
         <button onclick="hyper('php/logout.php')">Wyloguj się</button>
     </header>
     <main>
+    <section class="main">
     <h1>Euro 2024 Obstawianie</h1>
-    <h2>Witaj <?php echo ucfirst($_SESSION["user"]) ?></h2>
+    <h2>Witaj <?php echo $_SESSION["user"] ?></h2>
     <?php
         if(isset($_GET["false"])&&$_GET["false"]==1){
             echo '<h3 style="color:red;">Wystąpił błąd przy obstawianiu spróbuj ponownie</h3>';
@@ -94,6 +103,7 @@
                 
             ?>
     </form>
+    </section>
 </main>
 </body>
 </html>

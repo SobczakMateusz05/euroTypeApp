@@ -6,6 +6,8 @@ if(isset($_POST["user"])&&$_POST["user"]!=0&&isset($_POST["pass"])&&$_POST["pass
     $user = htmlspecialchars($_POST["user"]);
     $pass= htmlspecialchars($_POST["pass"]);
 
+    $pass=password_hash("$pass", PASSWORD_DEFAULT);
+
     $sql = "SELECT haslo from osoby where id_osoby=$user";
     $result = $conn -> query($sql);
     $row_num = mysqli_num_rows($result);

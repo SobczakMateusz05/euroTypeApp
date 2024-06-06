@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -17,11 +18,13 @@
     <link rel="manifest" href="img/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="css/login.css">
+    <script src="js/url.js"></script>
 </head>
 <body>
     <main>
+    <section class="main">
     <?php
-        require_once("php/connect.php");
+        require_once("php/connectlogin.php");
         $sql = "SELECT * from osoby where id_osoby=1";
         $result = $conn -> query($sql);
         $num_row = mysqli_num_rows($result);
@@ -50,18 +53,17 @@
                 }
                 if($variable==2){
                         
-                    $sql = "SELECT * from osoby as u join typy_osoby as t on u.typ=t.id where u.login='$login' and u.haslo='$pass'";
-
+                    $sql = "SELECT * from osoby as u join typy_osoby as t on u.typ=t.id where u.login='$login'";
                     if($result = $conn->query($sql)){
                         $user_number=$result->num_rows;
                     if($user_number>0){
                         $row=$result->fetch_assoc();
-                            if($row["haslo"]==$pass){
+                            if(password_verify($pass, $row["haslo"])){
                             $_SESSION['user']=$row['login'];
                             $_SESSION['type']=$row['typ'];
                             $_SESSION["id"]=$row["id_osoby"];
                             $result->free_result();
-                            header("location: typing.php");
+                            echo '<script> hyper("typing.php");</script>';
                         }
                         else{
                             echo '<h4 class="missed">Błedny login lub/i hasło!</h4>';
@@ -120,6 +122,7 @@
             END;
         }
     ?>
+    </section>
 </main>
 </body>
 </html>

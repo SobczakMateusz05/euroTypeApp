@@ -4,7 +4,7 @@
 
 }
 
-main, form{
+main, form, .main{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,4 +50,17 @@ input[type="submit"]:hover, button:hover{
 
 button{
     margin-top: 30px;
+}
+
+.main{
+    background-color: lightgray;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+body{
+    background: url("../img/stadium.jpg") no-repeat;
+    background-size: cover;
+    min-height: 100vh;
 }
