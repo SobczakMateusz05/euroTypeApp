@@ -33,6 +33,7 @@ h2{
     padding: 15px;
     border-radius: 10px;
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 form a, form input{
@@ -42,4 +43,31 @@ form a, form input{
 body{
     background: url("../img/stadium.jpg") no-repeat;
     background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.active{
+    background-color: #a8a8a8;
+}
+
+
+.active:hover{
+    background-color: #f0f0f0;
+}
+
+input[type="submit"], button{
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover, button:hover{
+    background-color: #a8a8a8;
+}
+
+.bottom{
+    display: flex;
+    justify-content: center;
 }

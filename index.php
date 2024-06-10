@@ -89,7 +89,7 @@
             }
             echo 
                 'Nazwa użytkownia:</p>
-                <input type="text" name="login"';
+                <input type="text" name="login" placeholder="Login" ';
             
             if(isset($login)){
                 echo 'value="'. $login . '"';
@@ -104,9 +104,11 @@
             echo <<< END
             
             Hasło:</p>
-            <input type="password" name="password">
+            <input type="password" name="password" placeholder="Hasło">
             <div class="sub">
-            <input type="submit" value="Zaloguj się" class="button" name="log">
+            <div class="bottom">
+                <input type="submit" value="Zaloguj się" class="button" name="log">
+            </div>
             </div>
             </form>
             END;

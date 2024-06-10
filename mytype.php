@@ -31,7 +31,15 @@
         <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
         <button onclick="hyper('typescore.php')">Wyniki typowania</button>
         <?php
-            if($_SESSION["id"]!=1){
+            $id = $_SESSION["id"];
+            $sql = "SELECT * FROM mecze as m WHERE m.data=CURRENT_DATE+1";
+            $result=$conn->query($sql);
+            $num_row=mysqli_num_rows($result);
+            if($num_row==0){
+                echo '<button onclick="hyper('."'usertype.php'".')">Typy użytkowników</button>';
+            }
+            if($id!=1){
+                echo '<button onclick="hyper('."'mytype.php'".')" class="active">Moje typy</button>';
                 echo '<button onclick="hyper('."'password.php'".')">Zmień hasło</button>';
             }
         ?>

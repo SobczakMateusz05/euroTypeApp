@@ -27,14 +27,26 @@
     <?php
         require_once("php/connect.php");
     ?>
-    <header>
+     <header>
         <button onclick="hyper('typing.php')">Ekran typowania</button>
         <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
         <button onclick="hyper('typescore.php')">Wyniki typowania</button>
-        <button onclick="hyper('mytype.php')">Moje typy</button>
+        <?php
+            $id = $_SESSION["id"];
+            $sql = "SELECT * FROM mecze as m WHERE m.data=CURRENT_DATE+1";
+            $result=$conn->query($sql);
+            $num_row=mysqli_num_rows($result);
+            if($num_row==0){
+                echo '<button onclick="hyper('."'usertype.php'".')">Typy użytkowników</button>';
+            }
+            if($id!=1){
+                echo '<button onclick="hyper('."'mytype.php'".')">Moje typy</button>';
+                echo '<button onclick="hyper('."'password.php'".')"  class="active">Zmień hasło</button>';
+            }
+        ?>
         <?php
             if($_SESSION["type"]=="admin")    
-            echo '<button onclick="hyper('."'adminpanel.php'".')">Panel Admina</button>';
+            echo '<button onclick="hyper('."'adminpanel.php'".')" >Panel Admina</button>';
         ?>
         <button onclick="hyper('php/logout.php')">Wyloguj się</button>
     </header>

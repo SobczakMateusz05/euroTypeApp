@@ -3,7 +3,7 @@
     margin: 0;
 }
 
-main, form ,.main{
+main, form, .manage ,.main{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +19,7 @@ header, button{
     margin: 0 10px;
 }
 
- button{
+button{
     padding: 10px 15px;
     margin-top: 30px;
     border-radius: 10px;
@@ -28,7 +28,7 @@ header, button{
 }
 
 button:hover{
-    background-color: #cecbcb;
+    background-color: #a8a8a8;
 }
 
 h1{
@@ -54,10 +54,24 @@ th, td{
     padding: 15px;
     border-radius: 10px;
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 body{
     background: url("../img/stadium.jpg") no-repeat;
     background-size: cover;
+    background-position: center;
     min-height: 100vh;
+}
+
+.disable{
+    display: none!important;
+}
+
+.active{
+    background-color: #a8a8a8;
+}
+
+.active:hover{
+    background-color: #f0f0f0;
 }

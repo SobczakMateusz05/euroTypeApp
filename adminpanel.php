@@ -28,18 +28,26 @@
     <?php
         require_once("php/connect.php");
     ?>
-    <header>
+        <header>
         <button onclick="hyper('typing.php')">Ekran typowania</button>
         <button onclick="hyper('gamescore.php')">Wyniki meczów</button>
         <button onclick="hyper('typescore.php')">Wyniki typowania</button>
         <?php
-            if($_SESSION["id"]!=1){
+            $id = $_SESSION["id"];
+            $sql = "SELECT * FROM mecze as m WHERE m.data=CURRENT_DATE+1";
+            $result=$conn->query($sql);
+            $num_row=mysqli_num_rows($result);
+            if($num_row==0){
+                echo '<button onclick="hyper('."'usertype.php'".')">Typy użytkowników</button>';
+            }
+            if($id!=1){
                 echo '<button onclick="hyper('."'mytype.php'".')">Moje typy</button>';
                 echo '<button onclick="hyper('."'password.php'".')">Zmień hasło</button>';
             }
-            else{
-                echo '<button onclick="hyper('."'usertype.php'".')">Typy użytkowników</button>';
-            }
+        ?>
+        <?php
+            if($_SESSION["type"]=="admin")    
+            echo '<button onclick="hyper('."'adminpanel.php'".')"  class="active">Panel Admina</button>';
         ?>
         <button onclick="hyper('php/logout.php')">Wyloguj się</button>
     </header>
@@ -50,6 +58,7 @@
         <nav>
             <button onclick="manage('score')" class="manageBtn active" id="scoreBtn">Zarządzaj wynikami</button>
             <button onclick="manage('game')" class="manageBtn" id="gameBtn">Zarządzaj meczami</button>
+            <button onclick="manage('teams')" class="manageBtn" id="teamsBtn">Zarządzaj drużynami</button>
             <button onclick="manage('users')" class="manageBtn" id="usersBtn">Zarządzaj użytkownikami</button>
         </nav>
 
@@ -222,7 +231,7 @@
                 <select name="game">
                     <option value="0">Wybierz...</option>
                     <?php
-                        $sql = "SELECT m.id_meczu, d.kraj as kraj1 , dd.kraj as kraj2, m.data from mecze as m join druzyny as d on m.id_druzyna_1=d.id join druzyny as dd on m.id_druzyna_2=dd.id";
+                        $sql = "SELECT m.id_meczu, d.kraj as kraj1 , dd.kraj as kraj2, m.data from mecze as m join druzyny as d on m.id_druzyna_1=d.id join druzyny as dd on m.id_druzyna_2=dd.id ORDER BY data";
                         $result = $conn -> query($sql);
                         while($row=$result->fetch_assoc()){
                             echo '<option value="'. $row["id_meczu"] .'">' . $row["kraj1"] ." - " . $row["kraj2"] . " (" . $row["data"] . ") ". '</option>'; 
@@ -233,6 +242,60 @@
             </form>
 
         </section> 
+
+        <section id="teams" class="disable manage">
+                        
+            <h3>Dodaj drużynę</h3>
+            
+            <?php
+                if(isset($_GET["addteam"])&&$_GET["addteam"]==1){
+                    echo '<h3 style="color:green;">Dodano drużynę</h3>';
+                    echo '<script> url("addteam");manage("teams");</script>';
+                }
+                else if(isset($_GET["addteam"])&&$_GET["addteam"]==2){
+                    echo '<h3 style="color:red;">Błąd dodania drużyny</h3>';
+                    echo '<script> url("addteam");manage("teams");</script>';
+                }
+                else if(isset($_GET["addteam"])&&$_GET["addteam"]==3){
+                    echo '<h3 style="color:red;">Taka drużyna już istnieje</h3>';
+                    echo '<script> url("addteam");manage("teams");</script>';
+                }
+            ?>
+
+            <form action="php/team/addteam.php" method="POST" autocomplete="off">
+                <a>Nazwa drużyny:</a>
+                <input type="text" name="name" placeholder="Nazwa dryżyny" required>
+                <input type="submit" value="Dodaj">
+            </form>
+
+            <h3>Usuń drużynę</h3>
+
+            <?php
+                if(isset($_GET["delteam"])&&$_GET["delteam"]==1){
+                    echo '<h3 style="color:green;">Usunięto drużynę</h3>';
+                    echo '<script> url("delteam");manage("teams");</script>';
+                }
+                else if(isset($_GET["delteam"])&&$_GET["delteam"]==2){
+                    echo '<h3 style="color:red;">Błąd usunięcia drużyny</h3>';
+                    echo '<script> url("delteam");manage("teams");</script>';
+                }
+            ?>
+
+            <form method="POST" action="php/team/delteam.php" autocomplete="off">
+                <a>Wybierz drużynę:</a>
+                <select name="id">
+                    <option value="0">Wybierz...</option>
+                    <?php
+                        $sql = "SELECT * FROM druzyny ORDER BY kraj";
+                        $result = $conn -> query($sql);
+                        while($row=$result->fetch_assoc()){
+                            echo '<option value="'. $row["id"] . '">' . $row["kraj"] . '</option>';
+                        }
+                    ?>
+                </select>
+                <input type="submit" value="Usuń">
+            </form>
+        </section>
 
         <section id="users" class="disable manage">
 

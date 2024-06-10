@@ -45,7 +45,7 @@ input[type="submit"], button{
 }
 
 input[type="submit"]:hover, button:hover{
-    background-color: #cecbcb;
+    background-color: #a8a8a8;
 }
 
 button{
@@ -57,10 +57,20 @@ button{
     padding: 15px;
     border-radius: 10px;
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 body{
     background: url("../img/stadium.jpg") no-repeat;
     background-size: cover;
+    background-position: center;
     min-height: 100vh;
+}
+
+.active{
+    background-color: #a8a8a8;
+}
+
+.active:hover{
+    background-color: #f0f0f0;
 }

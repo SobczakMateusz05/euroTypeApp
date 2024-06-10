@@ -26,6 +26,10 @@ h1, h2, h3{
     margin: 20px;
 }
 
+header{
+    margin-top: 30px;
+}
+
 a{
     margin: 5px;
 }
@@ -43,7 +47,7 @@ input[type="submit"], button{
 }
 
 input[type="submit"]:hover, button:hover{
-    background-color: #cecbcb;
+    background-color: #a8a8a8;
 }
 
 input[type="text"], input[type="number"], input[type="date"],input[type="password"], select{
@@ -55,8 +59,9 @@ input[type="text"], input[type="number"], input[type="date"],input[type="passwor
 }
 
 .active{
-    background-color: #cecbcb;
+    background-color: #a8a8a8;
 }
+
 
 .active:hover{
     background-color: #f0f0f0;
@@ -67,11 +72,13 @@ input[type="text"], input[type="number"], input[type="date"],input[type="passwor
     padding: 15px;
     border-radius: 10px;
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 body{
     background: url("../img/stadium.jpg") no-repeat;
     background-size: cover;
+    background-position: center;
     min-height: 100vh;
 }
 

@@ -1,9 +1,9 @@
 <?php
 error_reporting(E_ALL & ~E_WARNING); 
-$db_host="euro2024.dwexpert.pl.mysql.dhosting.pl";
-$db_user="ceh9ai_user";
-$db_pass="+fqR6:Bp4P";
-$db_name="ireib4_euro2024";
+$db_host="localhost";
+$db_user="root";
+$db_pass="";
+$db_name="euro";
 
 try {
     $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
