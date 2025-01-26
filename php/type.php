@@ -6,7 +6,7 @@ $user_id = $_SESSION["id"];
 
 require_once("connect.php");
 
-$sql = "SELECT m.id_meczu FROM mecze as m WHERE m.data = CURRENT_DATE + 1";
+$sql = "SELECT m.id_meczu FROM mecze as m WHERE m.data = DATE_ADD(CURRENT_DATE, INTERVAL 1 DAY)";
 
 $result = $conn -> query($sql);
 

@@ -12,7 +12,7 @@
     <meta property="og:type" content="aplication" />
     <meta property="og:description" content="Aplikacja do obstawiania meczy w zamkniętej grupie" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Euro2024 Moje Typy</title>
+    <title>Aplikacja Do Obstawiania</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
@@ -20,6 +20,7 @@
     <link rel="manifest" href="img/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/gradient.css">
     <script src="js/url.js"></script>
     <script src="js/admin.js"></script> 
 </head>
@@ -33,32 +34,39 @@
         <button onclick="hyper('typescore.php')">Wyniki typowania</button>
         <?php
             $id = $_SESSION["id"];
-            $sql = "SELECT * FROM mecze as m WHERE m.data=CURRENT_DATE+1";
+            $sql = "SELECT * FROM mecze as m WHERE m.data=DATE_ADD(CURRENT_DATE, INTERVAL 1 DAY)";
             $result=$conn->query($sql);
             $num_row=mysqli_num_rows($result);
-            if($num_row==0){
+            $sql = "SELECT * FROM zaglosowane WHERE data = DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY);";
+            $result = $conn -> query($sql);
+            $num_row2=mysqli_num_rows($result);
+            if($num_row==0||$num_row2>0){
                 echo '<button onclick="hyper('."'usertype.php'".')" class="active">Typy użytkowników</button>';
             }
             if($id!=1){
                 echo '<button onclick="hyper('."'mytype.php'".')">Moje typy</button>';
                 echo '<button onclick="hyper('."'password.php'".')">Zmień hasło</button>';
             }
-        ?>
-        <?php
             if($_SESSION["type"]=="admin")    
-            echo '<button onclick="hyper('."'adminpanel.php'".')">Panel Admina</button>';
+            echo '<button onclick="hyper('."'adminpanel.php'".')" >Panel Admina</button>';
         ?>
         <button onclick="hyper('php/logout.php')">Wyloguj się</button>
     </header>
     <main>
     <section class="main">
+        <h1>Ekran typów użytkowników</h1>
         <nav>
             <button onclick="manage('new')" class="manageBtn active" id="newBtn">Najnowsze typy</button>
-            <button onclick="manage('all')" class="manageBtn" id="allBtn">Wszystkie typy</button>
+            <?php
+                if($num_row==0){
+                    echo '<button onclick="manage('."'all'". ')" class="manageBtn" id="allBtn">Wszystkie typy</button>';
+                }
+            ?>
+            
         </nav>
         <section id="new" class="manage">
         <?php
-            $sql2= "SELECT o.id_osoby, o.login FROM osoby as o WHERE id_osoby!=1";
+            $sql2= "SELECT o.id_osoby, o.login FROM osoby as o WHERE id_osoby!=1 AND o.id_osoby!=18";
             $result2 = $conn -> query($sql2);
             while($row2=$result2->fetch_assoc()){
                 $id=$row2["id_osoby"];
@@ -74,13 +82,14 @@
                      }
                      echo "</table>";
                 }
+                
             }
         
         ?>
         </section>
         <section id="all" class="disable manage">
         <?php
-            $sql2= "SELECT o.id_osoby, o.login FROM osoby as o WHERE id_osoby!=1";
+            $sql2= "SELECT o.id_osoby, o.login FROM osoby as o WHERE id_osoby!=1 AND o.id_osoby!=18";
             $result2 = $conn -> query($sql2);
             while($row2=$result2->fetch_assoc()){
                 $id=$row2["id_osoby"];
