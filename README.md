@@ -23,8 +23,11 @@ This web application was created to **typing euro 2024 matches** for closed grou
 
 ## System implementation
 
-First import database (euro_database.sql) to your MySQL or MariaDB Server. **You can change data to your tournament matches in admin panel**. You have to change db information about your databse in **connect.php** and **connectlogin.php** ($db_host is your server link, $db_user is your db user, $db_pass is your db user pass, $db_name is name of your db). Then configure web engine (for example Apache2 or NGINX) with php engine (the best version 8). Add all file except euro_database.sql, README.md and .gitattributes to your hosted by web engine folder. 
-
+1. Import database (euro_database.sql) to your MySQL or MariaDB Server ( **You can change data to your tournament matches in admin panel**)
+2. change db information about your databse in **connect.php** and **connectlogin.php** ($db_host is your server link, $db_user is your db user, $db_pass is your db user pass, $db_name is name of your db).
+3. configure web engine (for example Apache2 or NGINX) with php engine (the best version 8).
+4. Add all file except euro_database.sql, README.md and .gitattributes to your hosted by web engine folder.
+   
 ## POLSKI
 
 ## Założenia projektu
@@ -46,4 +49,7 @@ Ta aplikacja internetowa została stworzona do **typowania meczów Euro 2024** d
 
 ### Implementacja systemu
 
-Najpierw zaimportuj bazę danych (euro_database.sql) do swojego serwera MySQL lub MariaDB. **Możesz zmienić dane dotyczące meczów turnieju w panelu administratora**. Musisz zmienić informacje o bazie danych w plikach **connect.php** oraz **connectlogin.php** ($db_host to link do twojego serwera, $db_user to użytkownik bazy danych, $db_pass to hasło użytkownika bazy danych, $db_name to nazwa twojej bazy danych). Następnie skonfiguruj silnik webowy (na przykład Apache2 lub NGINX) z silnikiem PHP (najlepsza wersja to 8). Przenieś wszystkie pliki oprócz euro_database.sql, README.md i .gitattributes do folderu hostowanego przez silnik webowy.
+1. Zaimportuj bazę danych (euro_database.sql) do swojego serwera MySQL lub MariaDB (Możesz zmienić dane o swoich meczach turniejowych w panelu administratora).
+2. Zaktualizuj informacje o bazie danych w connect.php i connectlogin.php ($db_host to link do twojego serwera, $db_user to użytkownik bazy danych, $db_pass to hasło użytkownika bazy danych, $db_name to nazwa twojej bazy danych).
+3. Skonfiguruj silnik webowy (np. Apache2 lub NGINX) z silnikiem PHP (najlepiej wersja 8).
+4. Dodaj wszystkie pliki oprócz euro_database.sql, README.md i .gitattributes do folderu obsługiwanego przez twój silnik webowy.
