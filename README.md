@@ -47,7 +47,7 @@ Ta aplikacja internetowa została stworzona do **typowania meczów Euro 2024** d
 - **MariaDB**
 - **MySQL**
 
-### Implementacja systemu
+## Implementacja systemu
 
 1. Zaimportuj bazę danych (euro_database.sql) do swojego serwera MySQL lub MariaDB (**Możesz zmienić dane o swoich meczach turniejowych w panelu administratora**).
 2. Zaktualizuj informacje o bazie danych w **connect.php** i **connectlogin.php** ($db_host to link do twojego serwera, $db_user to użytkownik bazy danych, $db_pass to hasło użytkownika bazy danych, $db_name to nazwa twojej bazy danych).
