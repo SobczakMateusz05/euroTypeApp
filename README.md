@@ -9,7 +9,7 @@
    - [System Implementation](#system-implementation)
 - [POLSKI](#polski)
    - [Założenia Projektu](#założenia-projektu)
-   - [Technology Stack](#technology-stack)
+   - [Technology Stack](#technology-stack-1)
       - [Języki](#języki)
       - [Bazy Danych](#bazy-danych)
    - [Implementacja Systemu](#implementacja-systemu)
