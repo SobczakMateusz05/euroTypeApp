@@ -18,7 +18,7 @@
 
 ## Project Assumptions
 
-This web application was created to **typing euro 2024 matches** for closed group of friends. Can be user to bigger group and diffrent matches. Created in polish language (you can translate all to your own language). 
+This web application was created to **typing euro 2024 matches** for closed group of friends. Can be use for bigger group and diffrent matches. Created in polish language (you can translate all to your own language). 
 
 ## Technology Stack
 
